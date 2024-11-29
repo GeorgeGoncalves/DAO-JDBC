@@ -55,9 +55,24 @@ public class Principal {
 		
 		DaoDepartamento dd = FabricaDao.criaDepartamentoImpl();
 		
+		
 		System.out.println("\n***** TESTE 1 DEPARTAMENTO INSERT ******");
 		Departamento dpt = new Departamento(null, "Manutencao");
 		dd.insert(dpt);
 		System.out.println("Novo departamento inserido: " + dpt.getId());
+				
+		
+		
+		System.out.println("\n***** TESTE 2 DEPARTAMENTO FINDBYID ******");
+		dpt = dd.findById(11);
+		System.out.println(dpt);
+
+		
+		System.out.println("\n***** TESTE 2 DEPARTAMENTO UPDATE ******");
+		dpt = dd.findById(3);
+		dpt.setNome("Eletrico");
+		dd.update(dpt);
+		System.out.println("Update realizado com sucesso!");
+		
 	}
 }

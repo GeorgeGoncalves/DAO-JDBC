@@ -54,7 +54,25 @@ public class DepartamentoImpl implements DaoDepartamento {
 
 	@Override
 	public void update(Departamento obj) {
-		// TODO Auto-generated method stub
+		
+		PreparedStatement ps = null;
+		
+		try {
+			
+			ps = conexao.prepareStatement("UPDATE departamento "
+					+ "SET Nome = ? "
+					+ "WHERE Id = ?");
+			
+			ps.setString(1, obj.getNome());
+			ps.setInt(2, obj.getId());
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new BDException(e.getMessage());
+		} finally {
+			BancoDados.fecharStatement(ps);
+		}
 		
 	}
 
@@ -66,8 +84,30 @@ public class DepartamentoImpl implements DaoDepartamento {
 
 	@Override
 	public Departamento findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			ps = conexao.prepareStatement("select departamento. *"
+					+ "from departamento where id = ?");
+			
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {				
+				Departamento dep = new Departamento();
+				dep.setId(rs.getInt("id"));
+				dep.setNome(rs.getString("nome"));
+				return dep;
+			}
+			return null;
+		} catch (SQLException e) {
+			throw new BDException(e.getMessage());
+		} finally {
+			BancoDados.fecharStatement(ps);
+		}		
 	}
 
 	@Override
