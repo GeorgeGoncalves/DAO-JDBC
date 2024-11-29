@@ -1,9 +1,12 @@
 package modelo.entidades;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Departamento {
+public class Departamento implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private String nome;
 	
@@ -51,6 +54,5 @@ public class Departamento {
 	@Override
 	public String toString() {
 		return "id: " + id + ", nome: " + nome;
-	}
-	
+	}	
 }

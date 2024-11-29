@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class BancoDados {
-
+	
 	private static Connection conexao = null;
 
 	public static Connection conectar() {

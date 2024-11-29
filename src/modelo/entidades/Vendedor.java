@@ -1,10 +1,13 @@
 package modelo.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Vendedor {
+public class Vendedor implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Integer id;
 	private String nome;
 	private String email;
@@ -105,6 +108,5 @@ public class Vendedor {
 				+ salario 
 				+ ", departamento: " 
 				+ departamento;
-	}
-	
+	}	
 }
