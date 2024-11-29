@@ -46,7 +46,8 @@ public class VendedorImpl implements DaoVendedor {
 		
 		try {
 			
-			ps = conexao.prepareStatement("SELECT vendedor.*,departamento.Nome as DepNome "
+			ps = conexao.prepareStatement(
+					"SELECT vendedor.*,departamento.Nome as DepNome "
 					+ "FROM vendedor INNER JOIN departamento "
 					+ "ON vendedor.DepartamentoId = departamento.Id "
 					+ "WHERE vendedor.Id = ? ");
@@ -58,7 +59,7 @@ public class VendedorImpl implements DaoVendedor {
 				
 				Departamento dep = new Departamento();
 				dep.setId(rs.getInt("departamentoId"));
-				dep.setNome(rs.getString("nome"));
+				dep.setNome(rs.getString("depNome"));
 				
 				Vendedor ven = new Vendedor();
 				ven.setId(rs.getInt("id"));
@@ -66,6 +67,7 @@ public class VendedorImpl implements DaoVendedor {
 				ven.setEmail(rs.getString("email"));
 				ven.setDataNasc(rs.getDate("dataNasc"));
 				ven.setSalario(rs.getDouble("salario"));
+				ven.setDepartamento(dep);
 				
 				return ven;						
 			}
