@@ -1,5 +1,6 @@
 package aplicacao;
 
+import java.util.Date;
 import java.util.List;
 
 import DaoJdbc.DaoVendedor;
@@ -29,5 +30,12 @@ public class Principal {
 		lista = dv.findAll();
 		for (Vendedor a: lista)
 			System.out.println(a);
+		
+		
+		System.out.println("\n***** TESTE 4 VENDEDOR INSERT *****");
+		Vendedor nv = new Vendedor(null, "Lucas Silva", "lucas@hotmail.com",
+				new Date(), 5000.0, dep);
+		dv.insert(nv);
+		System.out.println("Inserido! Novo ID: " + nv.getId());
 	}
 }
