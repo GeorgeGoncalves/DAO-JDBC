@@ -11,6 +11,6 @@ public class FabricaDao {
 	}
 	
 	public static DaoDepartamento criaDepartamentoImpl() {
-		return new DepartamentoImpl();
+		return new DepartamentoImpl(BancoDados.conectar());
 	}
 }

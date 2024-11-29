@@ -3,6 +3,7 @@ package aplicacao;
 import java.util.Date;
 import java.util.List;
 
+import DaoJdbc.DaoDepartamento;
 import DaoJdbc.DaoVendedor;
 import DaoJdbc.FabricaDao;
 import modelo.entidades.Departamento;
@@ -14,7 +15,7 @@ public class Principal {
 		
 		DaoVendedor dv = FabricaDao.criaVendedorImpl();
 		
-		System.out.println("***** TESTE 1 VENDEDOR FINDBYID *****");
+		/*System.out.println("***** TESTE 1 VENDEDOR FINDBYID *****");
 		Vendedor vdd = dv.findById(4);
 		System.out.println(vdd);
 		
@@ -49,6 +50,14 @@ public class Principal {
 		
 		System.out.println("\n***** TESTE 6 VENDEDOR DELETEID*****");
 		dv.deleteById(5);
-		System.out.println("Delete completado.");
+		System.out.println("Delete completado.");*/
+		
+		
+		DaoDepartamento dd = FabricaDao.criaDepartamentoImpl();
+		
+		System.out.println("\n***** TESTE 1 DEPARTAMENTO INSERT ******");
+		Departamento dpt = new Departamento(null, "Manutencao");
+		dd.insert(dpt);
+		System.out.println("Novo departamento inserido: " + dpt.getId());
 	}
 }
