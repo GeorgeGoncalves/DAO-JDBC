@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import DaoJdbc.DaoDepartamento;
@@ -97,9 +98,7 @@ public class DepartamentoImpl implements DaoDepartamento {
 			rs = ps.executeQuery();
 			
 			if (rs.next()) {				
-				Departamento dep = new Departamento();
-				dep.setId(rs.getInt("id"));
-				dep.setNome(rs.getString("nome"));
+				Departamento dep = instanciarDepartamento(rs);
 				return dep;
 			}
 			return null;
@@ -110,10 +109,38 @@ public class DepartamentoImpl implements DaoDepartamento {
 		}		
 	}
 
+	private Departamento instanciarDepartamento(ResultSet rs) throws SQLException {
+		Departamento dep = new Departamento();
+		dep.setId(rs.getInt("id"));
+		dep.setNome(rs.getString("nome"));
+		return dep;
+	}
+
 	@Override
 	public List<Departamento> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			ps = conexao.prepareStatement("select * from departamento");
+			
+			rs = ps.executeQuery();
+			
+			List<Departamento> lista = new ArrayList<>();
+			
+			while (rs.next()) 
+				lista.add(instanciarDepartamento(rs));
+			
+			return lista;
+		} catch (SQLException e) {
+			throw new BDException(e.getMessage());
+		} finally {
+			BancoDados.fecharStatement(ps);
+			BancoDados.fecharRS(rs);
+		}
+		
 	}
 
 }

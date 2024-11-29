@@ -1,5 +1,6 @@
 package aplicacao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,8 +39,7 @@ public class Principal {
 				new Date(), 5199.0, dep);
 		//dv.insert(nv);
 		System.out.println("Inserido! Novo ID: " + nv.getId());
-		
-		
+				
 		
 		System.out.println("\n***** TESTE 5 VENDEDOR UPDATE*****");
 		vdd = dv.findById(15);
@@ -62,17 +62,22 @@ public class Principal {
 		System.out.println("Novo departamento inserido: " + dpt.getId());
 				
 		
-		
 		System.out.println("\n***** TESTE 2 DEPARTAMENTO FINDBYID ******");
 		dpt = dd.findById(11);
 		System.out.println(dpt);
 
 		
-		System.out.println("\n***** TESTE 2 DEPARTAMENTO UPDATE ******");
+		System.out.println("\n***** TESTE 3 DEPARTAMENTO UPDATE ******");
 		dpt = dd.findById(3);
-		dpt.setNome("Eletrico");
+		dpt.setNome("Moda");
 		dd.update(dpt);
 		System.out.println("Update realizado com sucesso!");
 		
+		
+		System.out.println("\n***** TESTE 4 DEPARTAMENTO FINDALL ******");
+		List<Departamento> lista = new ArrayList<>();
+		lista = dd.findAll();
+		for (Departamento a: lista)
+			System.out.println(a);
 	}
 }
