@@ -67,7 +67,30 @@ public class VendedorImpl implements DaoVendedor {
 
 	@Override
 	public void update(Vendedor obj) {
-		// TODO Auto-generated method stub
+		
+		PreparedStatement ps = null;
+		
+		try {
+			
+			ps = conexao.prepareStatement("UPDATE vendedor "  
+					+ "SET Nome = ?, Email = ?, DataNasc = ?, "
+					+ "salario = ? "
+					+ "where id = ?");
+			
+			ps.setString(1, obj.getNome());
+			ps.setString(2, obj.getEmail());
+			ps.setDate(3, new java.sql.Date(obj.getDataNasc().getTime()));
+			ps.setDouble(4, obj.getSalario());
+			ps.setInt(5, obj.getDepartamento().getId());
+			ps.setInt(5, obj.getId());
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new BDException(e.getMessage());
+		}finally {
+			BancoDados.fecharStatement(ps);
+		}
 		
 	}
 

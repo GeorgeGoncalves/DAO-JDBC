@@ -34,8 +34,16 @@ public class Principal {
 		
 		System.out.println("\n***** TESTE 4 VENDEDOR INSERT *****");
 		Vendedor nv = new Vendedor(null, "Lucas Silva", "lucas@hotmail.com",
-				new Date(), 5000.0, dep);
+				new Date(), 5199.0, dep);
 		dv.insert(nv);
 		System.out.println("Inserido! Novo ID: " + nv.getId());
+		
+		
+		
+		System.out.println("\n*** TESTE 5 vendedor Update***");
+		vdd = dv.findById(15);
+		vdd.setNome("Marcos Paulo");
+		dv.update(vdd);
+		System.out.println("Update completado!");
 	}
 }
