@@ -35,15 +35,20 @@ public class Principal {
 		System.out.println("\n***** TESTE 4 VENDEDOR INSERT *****");
 		Vendedor nv = new Vendedor(null, "Lucas Silva", "lucas@hotmail.com",
 				new Date(), 5199.0, dep);
-		dv.insert(nv);
+		//dv.insert(nv);
 		System.out.println("Inserido! Novo ID: " + nv.getId());
 		
 		
 		
-		System.out.println("\n*** TESTE 5 vendedor Update***");
+		System.out.println("\n***** TESTE 5 VENDEDOR UPDATE*****");
 		vdd = dv.findById(15);
 		vdd.setNome("Marcos Paulo");
 		dv.update(vdd);
 		System.out.println("Update completado!");
+		
+		
+		System.out.println("\n***** TESTE 6 VENDEDOR DELETEID*****");
+		dv.deleteById(5);
+		System.out.println("Delete completado.");
 	}
 }

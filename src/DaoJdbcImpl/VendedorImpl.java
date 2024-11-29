@@ -95,8 +95,24 @@ public class VendedorImpl implements DaoVendedor {
 	}
 
 	@Override
-	public void delete(Integer id) {
-		// TODO Auto-generated method stub
+	public void deleteById(Integer id) {
+		
+		PreparedStatement ps = null;
+		
+		try  {
+			
+			ps = conexao.prepareStatement("DELETE FROM vendedor "
+					+ "WHERE Id = ?" );
+			
+			ps.setInt(1, id);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new BDException(e.getMessage());
+		} finally {
+			BancoDados.fecharStatement(ps);
+		}
 		
 	}
 
