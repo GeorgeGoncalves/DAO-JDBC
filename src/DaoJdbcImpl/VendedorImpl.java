@@ -96,8 +96,43 @@ public class VendedorImpl implements DaoVendedor {
 
 	@Override
 	public List<Vendedor> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			
+		ps = conexao.prepareStatement(
+					 "SELECT vendedor.*,departamento.Nome as DepNome " 
+					 + "FROM vendedor INNER JOIN departamento " 
+					 + "ON vendedor.DepartamentoId = departamento.Id "
+					 + "ORDER BY Nome");
+		
+		rs = ps.executeQuery();
+		
+		List<Vendedor> lista = new ArrayList<>();
+		Map<Integer, Departamento> map = new HashMap<>();
+		
+		while (rs.next()) {
+			Departamento dep = instanciarDepartamento(rs);
+			
+			if (dep == null) {
+				
+				dep = instanciarDepartamento(rs);
+				map.put(rs.getInt("DepartamentoId"), dep);
+			}
+			
+			Vendedor vdd = instanciarVendedor(rs, dep); 
+			lista.add(vdd);
+		}
+		
+		return lista;		
+		} catch (SQLException e) {
+			throw new BDException(e.getMessage());
+		} finally {
+			BancoDados.fecharStatement(ps);
+			BancoDados.fecharRS(rs);
+		}		
 	}
 
 	@Override

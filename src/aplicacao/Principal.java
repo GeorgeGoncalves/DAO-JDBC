@@ -1,6 +1,5 @@
 package aplicacao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import DaoJdbc.DaoVendedor;
@@ -25,5 +24,10 @@ public class Principal {
 		for (Vendedor a: lista)
 			System.out.println(a);
 		
+		
+		System.out.println("\n***** TESTE 3 VENDEDOR FINDALL *****");
+		lista = dv.findAll();
+		for (Vendedor a: lista)
+			System.out.println(a);
 	}
 }
