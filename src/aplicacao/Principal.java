@@ -1,19 +1,17 @@
 package aplicacao;
 
-import java.util.Date;
-
-import modelo.entidades.Departamento;
+import DaoJdbc.DaoVendedor;
+import DaoJdbc.FabricaDao;
 import modelo.entidades.Vendedor;
 
 public class Principal {
 
 	public static void main(String[] args) {
 		
-		Departamento dep = new Departamento(1, "Eletronicos");
-		System.out.println(dep);
+		DaoVendedor dv = FabricaDao.criaVendedorImpl();
 		
-		Vendedor ven = new Vendedor(
-				111, "Maria Aparecida", "maria@hotmail.com", new Date(), 4000.0, dep);
-		System.out.println(ven);
+		System.out.println("***** TESTE 1 VENDEDOR *****");
+		Vendedor vdd = dv.findById(4);
+		System.out.println(vdd);
 	}
 }
