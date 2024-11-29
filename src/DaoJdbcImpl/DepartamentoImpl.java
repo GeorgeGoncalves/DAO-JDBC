@@ -79,7 +79,22 @@ public class DepartamentoImpl implements DaoDepartamento {
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
+		
+		PreparedStatement ps = null;
+		
+		try {
+			
+			ps = conexao.prepareStatement("DELETE FROM departamento "
+					+ "WHERE Id = ?");
+			
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new BDException(e.getMessage());
+		} finally {
+			BancoDados.fecharStatement(ps);
+		}
 		
 	}
 

@@ -79,5 +79,10 @@ public class Principal {
 		lista = dd.findAll();
 		for (Departamento a: lista)
 			System.out.println(a);
+		
+		
+		System.out.println("\n***** TESTE DEPARTAMENTO 5 DELETEBYID *****");
+		dd.delete(19);
+		System.out.println("ID apagado com sucesso!");
 	}
 }
